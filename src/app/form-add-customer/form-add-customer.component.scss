@@ -1,0 +1,12 @@
+.icon {
+    right: 20px;
+    bottom: 20px;
+    i:hover {
+        color: red;
+        cursor: pointer;
+    }
+}
+.customer:hover {
+    transition: 0.5s;
+    border-color: red !important;
+}

@@ -1,0 +1,50 @@
+<div class="container m-auto d-flex border rounded p-0">
+    <div class="col-8 border-right ">
+        <div class="position-relative d-flex border rounded p-2 mt-2 customer" *ngFor="let customer of customers; index as i">
+            <img src="{{ customer.avatar }}" alt="avatar"
+                class="border-right-0 col-2 p-0 w-100 d-flex justify-content-center">
+            <div class="col-10 ">
+                <h3>{{ customer.name }}</h3>
+                <span>Địa chỉ : {{ customer.address }}</span><br>
+                <span> Số điên thoại : {{ customer.phone }}</span>
+            </div>
+            <div class="position-absolute d-flex icon">
+                <i class="far fa-edit mr-2 fa-lg" (click)="editCustomer(i)"></i>
+                <i class="far fa-trash-alt fa-lg" (click)="delCustomer(i)"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="w-100 p-3">
+            <form [formGroup]='registerForm' (ngSubmit)="onSubmit()">
+                <h4>News Customer :</h4>
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="name" placeholder="name..." [autofocus]="checkAutofocus">
+                    <span><small class="text-danger" *ngIf="registerForm.get('name').invalid && registerForm.get('name').dirty">Tên không được để trống</small></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control " formControlName="address" placeholder="address...">
+                    <span><small class="text-danger" *ngIf="registerForm.get('address').invalid && registerForm.get('address').dirty">Địa chỉ không được để trống</small></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control " formControlName="phone" placeholder="phone..." >
+                    <span><small class="text-danger" *ngIf="registerForm.get('phone').invalid && registerForm.get('phone').dirty">Số điên thoại không được để trống</small></span>
+                </div>
+                <div class="form-group">
+                    <label for="">Avatar :</label>
+                    <label for="avatar" class="btn btn-light rounded-pill ml-3 border py-1">Choose</label>
+                    <input type="file" class="form-control-file" formControlName="avatar" id="avatar" name="avatar"
+                        (change)="renderAvatar($event)" style="display: none;">
+
+                        <span><small class="text-danger" *ngIf="registerForm.get('avatar').invalid && registerForm.get('avatar').dirty">Ảnh không được để trống</small></span>
+                </div>
+                <input type="text" class="form-control " formControlName="index" hidden >
+                <div class="form-group">
+                    <img [src]="showAvatar" alt="" style="width: 197px;height: 191px;">
+                </div>
+                
+                <button class="btn btn-primary w-100" >Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
